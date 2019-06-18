@@ -126,6 +126,15 @@ function filter() {
         }
     }
 }
+function ResetFilter(){
+    var  table, tr, td, i;
+    //input = document.getElementById("Input");
+    filter = "A";
+    table = document.getElementById("tab");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) 
+             tr[i].style.display = "";   
+}
 function filterHieght_mass(indice,value) {
     var input, filter, table, tr, td, i, txtValue;
     //input = document.getElementById("Input");
