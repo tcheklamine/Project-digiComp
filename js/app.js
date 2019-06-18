@@ -44,13 +44,14 @@ const people = async function (id) {
                 for (var j = 0; j < col.length; j++) {
                     var tabCell = tr.insertCell(-1);
                     tabCell.innerHTML = data.results[i][col[j]];
+                    
                 }
             }
 
             // ajouter Json a la div data .
             var divContainer = document.getElementById("data");
             divContainer.innerHTML = "";
-            divContainer.appendChild(table)
+            divContainer.appendChild(table);
             console.log(data);
             setTimeout(stopAnimation, 1000);
         }
@@ -61,8 +62,18 @@ const people = async function (id) {
         console.log(e)
     }
     
+    
     window.scrollTo(0, document.body.scrollHeight);
     testNextPrecedent();
+
+    var rows = document.getElementsByTagName("tr");
+    for (var i = 0; i < rows.length; i++)
+    {
+        rows[i].onclick = function() {
+           ModalTAble(this.getElementsByTagName("td")[7].textContent);
+        };
+    }
+
 
 }
 function suivant() {
@@ -74,6 +85,7 @@ function precedent() {
     suprimerRows();
     indice--;
     testNextPrecedent();
+    document.getElementById("next").style.display
     //  people(indice);
     // window.scrollTo(0,document.body.scrollHeight);
 }
@@ -92,9 +104,10 @@ function testNextPrecedent(){
     if(next=== null){
       nextbuton.style.display="none";
     }
-    else{
+    else {
         nextbuton.style.display="";
     }
+
     if(prec==null || indice===1){
         precedentButon.style.display="none";
     }else{
@@ -109,6 +122,7 @@ function stopAnimation() {
     div.style.display = "none";
 }
 //filtrer tableau
+
 function filterA() {
     var input, table, tr, td, i, txtValue;
     //input = document.getElementById("Input");
@@ -155,5 +169,74 @@ function filterHieght_mass(indice,value) {
     }
 
     }
+//modele table 
+function ModalTAble(rows){
+   console.log(rows);
+  
+   var modal = document.getElementById("myModal");
+   var span = document.getElementsByClassName("close")[0];
+   modal.style.display = "block";
+    span.onclick = function() {
+        modal.style.display = "none";
+        modalsupromerRows();
+   }
+
+    window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+        modalsupromerRows();
+    }
+    }
+
+    planet(rows);
+}
 
 people(1);
+//suppreimerRowsmodal
+function modalsupromerRows(){
+    let table1 = document.getElementById("tabPalent");
+    var size = table1.rows.length, i;
+    console.log(size);
+    for (i = 1; i < size - 3; i++) {
+        table1.deleteRow(i);
+    }
+
+}
+//.table planet
+const planet = async function (url) {
+   
+    try {
+        let response = await fetch(url)
+        if (response.ok) {
+            let data = await response.json()
+            var col = ["name","rotation_period","orbital_period","diameter","climate","gravity","terrain"];
+            //var colinclus="name";
+            let table = document.getElementById("tabPalent");
+            var tr = table.insertRow(-1);
+
+            
+            // ajouter JSOn on Rows.
+            for (var i = 0; i < 3; i++) {
+                tr = table.insertRow(-1);
+
+                for (var j = 0; j < col.length; j++) {
+                    var tabCell = tr.insertCell(-1);
+                    tabCell.innerHTML = data[col[j]];
+                    
+                }
+            }
+           
+            // ajouter Json a la div data .
+            var divContainer = document.getElementById("modal");
+            //divContainer.innerHTML="";
+            //divContainer.appendChild(table);
+        }
+        else {
+            console.log('Reteur du serveur ', response.status)
+        }
+    } catch (e) {
+        console.log(e)
+    }
+
+
+}
