@@ -59,6 +59,7 @@
         transition: background-color .3s;
         border: 1px solid #ddd;
         
+        
       }
       .filter a:hover:not(.active) {background-color: #ddd;}
 
@@ -115,6 +116,32 @@
         to{
           transform: rotate(-360deg);
         }
+      }
+      @media screen  and (max-width: 400px) and (max-width: 600px), (max-width: 300px) {
+        .filter a {
+          color: black;
+          float: auto;
+          padding: 8px 16px;
+          text-decoration: none;
+          transition: background-color .3s;
+          border: 1px solid #ddd;
+          
+          
+        }
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 50%;
+      }
+      .pagination {
+        display: inline-block;
+        margin: 0;
+        position: relative ;
+        top: 80%;
+        left: 10%;
+        
+
+      }
       }
       
       
