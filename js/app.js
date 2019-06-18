@@ -52,6 +52,7 @@ const people = async function (id) {
             divContainer.innerHTML = "";
             divContainer.appendChild(table)
             console.log(data);
+            setTimeout(stopAnimation, 1000);
         }
         else {
             console.log('Reteur du serveur ', response.status)
@@ -59,7 +60,7 @@ const people = async function (id) {
     } catch (e) {
         console.log(e)
     }
-    setTimeout(stopAnimation, 3000);
+    
     window.scrollTo(0, document.body.scrollHeight);
     testNextPrecedent();
 
@@ -108,17 +109,17 @@ function stopAnimation() {
     div.style.display = "none";
 }
 //filtrer tableau
-function filter() {
-    var input, filter, table, tr, td, i, txtValue;
+function filterA() {
+    var input, table, tr, td, i, txtValue;
     //input = document.getElementById("Input");
-    filter = "A";
+    
     table = document.getElementById("tab");
     tr = table.getElementsByTagName("tr");
     for (i = 0; i < tr.length; i++) {
         td = tr[i].getElementsByTagName("td")[0];
         if (td) {
             txtValue = td.textContent || td.innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            if (txtValue.includes("A") || txtValue.includes("a") ) {
                 tr[i].style.display = "";
             } else {
                 tr[i].style.display = "none";
