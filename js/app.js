@@ -1,4 +1,4 @@
-var indice = 1, table = document.getElementById("tab"), data;
+var indice = 1, table = document.getElementById("tab"), data,next,prec;
 
 const people = async function (id) {
     try {
@@ -11,7 +11,9 @@ const people = async function (id) {
             var size = table.rows.size;
 
             var tr = table.insertRow(-1);
-
+            next=data.next;
+            prec=data.previous;
+            //prec=data.
             // for (var i = 0; i < data.results.length; i++) {
             //     for (var key in data.results[i]) {
             //         if (col.indexOf(key) === -1 & colinclus.includes(key)) {
@@ -49,7 +51,7 @@ const people = async function (id) {
             var divContainer = document.getElementById("data");
             divContainer.innerHTML = "";
             divContainer.appendChild(table)
-            console.log(data.results);
+            console.log(data);
         }
         else {
             console.log('Reteur du serveur ', response.status)
@@ -59,18 +61,18 @@ const people = async function (id) {
     }
     setTimeout(stopAnimation, 3000);
     window.scrollTo(0, document.body.scrollHeight);
+    testNextPrecedent();
 
 }
 function suivant() {
     indice++;
     people(indice);
-
-
-
+    testNextPrecedent();
 }
 function precedent() {
     suprimerRows();
     indice--;
+    testNextPrecedent();
     //  people(indice);
     // window.scrollTo(0,document.body.scrollHeight);
 }
@@ -80,6 +82,22 @@ async function suprimerRows() {
     var size = table.rows.length, i;
     for (i = size - 1; i > size - 12; i--) {
         table.deleteRow(i);
+    }
+}
+//testerNextPrevios   '
+function testNextPrecedent(){
+    var nextbuton=document.getElementById("next");
+    var precedentButon=document.getElementById("precedent");
+    if(next=== null){
+      nextbuton.style.display="none";
+    }
+    else{
+        nextbuton.style.display="";
+    }
+    if(prec==null || indice===1){
+        precedentButon.style.display="none";
+    }else{
+        precedentButon.style.display="";
     }
 }
 function startANim() {
@@ -125,6 +143,7 @@ function filterHieght_mass(indice,value) {
             }
         }
     }
-}
+
+    }
 
 people(1);
