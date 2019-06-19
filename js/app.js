@@ -211,8 +211,8 @@ const people = async function (id) {
         for (i = 1; i < tr.length; i++) 
                 tr[i].style.display = "none";  
     } 
-
-    //.API  planet
+ 
+    //.API  planet from  pepole 
     const planet = async function (url) {
     
         try {
