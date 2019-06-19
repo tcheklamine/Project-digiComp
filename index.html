@@ -2,72 +2,74 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="css/style.css"/>
-  <script src="js/app.js" type ="text/javascript"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script src="js/app.js" type="text/javascript"></script>
 </head>
+
 <body>
-    <div class="loading" id="load" >
+    <div class="loading" id="load">
         <span>loading....</span>
     </div>
-  <h2>Table of People </h2>
-  <div class="filter">
-      <a onclick="filterA()" >Filtre By Name Having :A</a>
-      <a onclick="filterHieght_mass(2,170)" >Filtre By hieght Having + 170</a>
-      <a onclick="filterHieght_mass(3,60)" >Filtre BY Mass Having + 60</a> 
-      <a onclick="ResetFilter()" >Remove Filter</a>      
-  </div>
-  <div id="data">
-    <table id="tab">
-      <thead>
-      <tr>
-        <th>name</th>
-        <th>gender</th>        
-        <th>height</th>
-        <th>mass</th>
-        <th>hair_color</th>
-        <th>eye_color</th>
-        <th>skin_color</th>
-        <th>Planet</th>
-
-      </tr>
-    </thead>
-   
-     <!--name height mass hair_color eye_color birth_year homeworld-->
-    </table>
-  </div>
-  
-  <div class="pagination" id="p">
-          <a onclick="precedent()" id="precedent">❮</a>
-          <a onclick="suivant()" id="next">❯</a>  
-          
-  </div>
-  
-  <div id="myModal" class="modal">
-
-    <!-- Modal content -->
-    <div class="modal-content" >
-        <h2>Table of Planet </h2>
-      <span class="close">&times;</span>
-      <table id="tabPalent">
-        <thead>
-        <tr>
-          <th>name</th>
-          <th>rotation_period</th>
-          <th>orbital_period</th>
-          <th>diameter</th>
-          <th>climate</th>
-          <th>gravity</th>
-          <th>terrain</th>
-  
-        </tr>
-      </thead>
-      <!-- <div id="modal"></div> -->
-          <!--name height mass hair_color eye_color birth_year homeworld-->
-      </table>
+    <h2>Table of People </h2>
+    <div class="filter">
+        <a onclick="filterA()">Filtre By Name Having :A</a>
+        <a onclick="filterHieght_mass(2,170)">Filtre By hieght Having + 170</a>
+        <a onclick="filterHieght_mass(3,60)">Filtre BY Mass Having + 60</a>
+        <a onclick="ResetFilter()">Remove Filter</a>
     </div>
-    
-  </div>
+    <div id="data">
+        <table id="tab">
+            <thead>
+                <tr>
+                    <th>name</th>
+                    <th>gender</th>
+                    <th>height</th>
+                    <th>mass</th>
+                    <th>hair_color</th>
+                    <th>eye_color</th>
+                    <th>skin_color</th>
+                    <th>Planet</th>
+
+                </tr>
+            </thead>
+
+            <!--name height mass hair_color eye_color birth_year homeworld-->
+        </table>
+    </div>
+
+    <div class="pagination" id="p">
+        <a onclick="precedent()" id="precedent">❮</a>
+        <a onclick="suivant()" id="next">❯</a>
+
+    </div>
+
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <h2>Table of Planet </h2>
+            <span class="close">&times;</span>
+            <table id="tabPalent">
+                <thead>
+                    <tr>
+                        <th>name</th>
+                        <th>rotation_period</th>
+                        <th>orbital_period</th>
+                        <th>diameter</th>
+                        <th>climate</th>
+                        <th>gravity</th>
+                        <th>terrain</th>
+
+                    </tr>
+                </thead>
+                <!-- <div id="modal"></div> -->
+                <!--name height mass hair_color eye_color birth_year homeworld-->
+            </table>
+        </div>
+
+    </div>
 </body>
+
 </html>

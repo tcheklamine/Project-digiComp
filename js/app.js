@@ -4,80 +4,79 @@ var indice = 1,
     next,
     prec;
 
-const people = async function (id) {
-    try {
-        let response = await fetch('https://swapi.co/api/people/?format=json&page=' + id)
-        if (response.ok) {
-            data = await response.json()
-            var col = ["name", "gender", "height", "mass", "hair_color", "eye_color", "skin_color", "homeworld",];
-            //var colinclus="name";
-            table = document.getElementById("tab");
-            var size = table.rows.size;
+const people = async function(id) {
+        try {
+            let response = await fetch('https://swapi.co/api/people/?format=json&page=' + id)
+            if (response.ok) {
+                data = await response.json()
+                var col = ["name", "gender", "height", "mass", "hair_color", "eye_color", "skin_color", "homeworld", ];
+                //var colinclus="name";
+                table = document.getElementById("tab");
+                var size = table.rows.size;
 
-            var tr = table.insertRow(-1);
-            next = data.next;
-            prec = data.previous;
-            //prec=data.
-            // for (var i = 0; i < data.results.length; i++) {
-            //     for (var key in data.results[i]) {
-            //         if (col.indexOf(key) === -1 & colinclus.includes(key)) {
-            //             col.push(key);
-            //             console.log(table)
-            //         }
-            //     }
-            // }
+                var tr = table.insertRow(-1);
+                next = data.next;
+                prec = data.previous;
+                //prec=data.
+                // for (var i = 0; i < data.results.length; i++) {
+                //     for (var key in data.results[i]) {
+                //         if (col.indexOf(key) === -1 & colinclus.includes(key)) {
+                //             col.push(key);
+                //             console.log(table)
+                //         }
+                //     }
+                // }
 
-            //    console.log(table)
-            // cree table dynamique.
+                //    console.log(table)
+                // cree table dynamique.
 
 
-            // CRee  HTML table.
-            // TABLE ROW.
+                // CRee  HTML table.
+                // TABLE ROW.
 
-            /*for (var i = 0; i < col.length; i++) {
-                var th = document.createElement("th");      // TABLE HEADER.
-                th.innerHTML = col[i];
-                tr.appendChild(th);
-            }*/
-            // create ajouter JSOn on Rows.
-            for (var i = 0; i < data.results.length; i++) {
-                tr = table.insertRow(-1);
+                /*for (var i = 0; i < col.length; i++) {
+                    var th = document.createElement("th");      // TABLE HEADER.
+                    th.innerHTML = col[i];
+                    tr.appendChild(th);
+                }*/
+                // create ajouter JSOn on Rows.
+                for (var i = 0; i < data.results.length; i++) {
+                    tr = table.insertRow(-1);
 
-                for (var j = 0; j < col.length; j++) {
-                    var tabCell = tr.insertCell(-1);
-                    tabCell.innerHTML = data.results[i][col[j]];
+                    for (var j = 0; j < col.length; j++) {
+                        var tabCell = tr.insertCell(-1);
+                        tabCell.innerHTML = data.results[i][col[j]];
 
+                    }
                 }
+
+                // create  Json in  div data .
+                var divContainer = document.getElementById("data");
+                divContainer.innerHTML = "";
+                divContainer.appendChild(table);
+                console.log(data);
+                setTimeout(stopAnimation, 1000);
+            } else {
+                console.log('Reteur du serveur ', response.status)
             }
-
-            // create  Json in  div data .
-            var divContainer = document.getElementById("data");
-            divContainer.innerHTML = "";
-            divContainer.appendChild(table);
-            console.log(data);
-            setTimeout(stopAnimation, 1000);
+        } catch (e) {
+            console.log(e)
         }
-        else {
-            console.log('Reteur du serveur ', response.status)
+
+
+        window.scrollTo(0, document.body.scrollHeight);
+        testNextPrecedent();
+
+        var rows = document.getElementsByTagName("tr");
+        for (var i = 0; i < rows.length; i++) {
+            rows[i].onclick = function() {
+                ModalTAble(this.getElementsByTagName("td")[7].textContent);
+            };
         }
-    } catch (e) {
-        console.log(e)
+
+
     }
-
-
-    window.scrollTo(0, document.body.scrollHeight);
-    testNextPrecedent();
-
-    var rows = document.getElementsByTagName("tr");
-    for (var i = 0; i < rows.length; i++) {
-        rows[i].onclick = function () {
-            ModalTAble(this.getElementsByTagName("td")[7].textContent);
-        };
-    }
-
-
-}
-// NEXT API
+    // NEXT API
 function suivant() {
     indice++;
     people(indice);
@@ -94,7 +93,8 @@ function precedent() {
 }
 //delete  colonne
 async function suprimerRows() {
-    var size = table.rows.length, i;
+    var size = table.rows.length,
+        i;
     for (i = size - 1; i > size - 12; i--) {
         table.deleteRow(i);
     }
@@ -105,8 +105,7 @@ function testNextPrecedent() {
     var precedentButon = document.getElementById("precedent");
     if (next === null) {
         nextbuton.style.display = "none";
-    }
-    else {
+    } else {
         nextbuton.style.display = "";
     }
 
@@ -186,13 +185,13 @@ function ModalTAble(rows) {
     var modal = document.getElementById("myModal");
     var span = document.getElementsByClassName("close")[0];
     modal.style.display = "block";
-    span.onclick = function () {
+    span.onclick = function() {
         modal.style.display = "none";
         modalsupromerRows();
         stopAnimation();
     }
 
-    window.onclick = function (event) {
+    window.onclick = function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
             modalsupromerRows();
@@ -215,7 +214,7 @@ function modalsupromerRows() {
 }
 
 //.API  planet from  pepole 
-const planet = async function (url) {
+const planet = async function(url) {
 
     try {
         let response = await fetch(url)
@@ -225,22 +224,21 @@ const planet = async function (url) {
             //var colinclus="name";
             let table = document.getElementById("tabPalent");
             var tr = table.insertRow(-1);
-            var arrrysDAta =Object.keys(data).map(i => data[i]); 
+            var arrrysDAta = Object.keys(data).map(i  =>  data[i]);
             //console.log(arrrysDAta.length);
             // ajouter JSOn on Rows.     
-            for (var i = 0; i < arrrysDAta.length/14; i++) {
-                    tr = table.insertRow(-1);
-                        for (var j = 0; j < col.length; j++) {
-                            var tabCell = tr.insertCell(-1);
-                            tabCell.innerHTML = data[col[j]];
-                    }
+            for (var i = 0; i < arrrysDAta.length / 14; i++) {
+                tr = table.insertRow(-1);
+                for (var j = 0; j < col.length; j++) {
+                    var tabCell = tr.insertCell(-1);
+                    tabCell.innerHTML = data[col[j]];
+                }
             }
             // ajouter Json a la div data .
             //var divContainer = document.getElementById("modal");
             //divContainer.innerHTML="";
             //divContainer.appendChild(table);
-        }
-        else {
+        } else {
             console.log('Reteur du serveur ', response.status)
         }
     } catch (e) {
