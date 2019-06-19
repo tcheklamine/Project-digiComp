@@ -39,8 +39,6 @@ const people = async function (id) {
                 th.innerHTML = col[i];
                 tr.appendChild(th);
             }*/
-
-
             // create ajouter JSOn on Rows.
             for (var i = 0; i < data.results.length; i++) {
                 tr = table.insertRow(-1);
@@ -208,7 +206,7 @@ function ModalTAble(rows) {
 //API PEOPLE 
 people(1);
 
-//suppreimerRowsmodal
+//DElete Rowsmodal
 function modalsupromerRows() {
     let tableM = document.getElementById("tabPalent");
     tr = tableM.getElementsByTagName("tr");
@@ -227,17 +225,15 @@ const planet = async function (url) {
             //var colinclus="name";
             let table = document.getElementById("tabPalent");
             var tr = table.insertRow(-1);
-            //var arrrysDAta =Object.keys(data).map(i => data[i]); 
+            var arrrysDAta =Object.keys(data).map(i => data[i]); 
             //console.log(arrrysDAta.length);
-            // ajouter JSOn on Rows.
-            for (var i = 0; i < 1; i++) {
-                tr = table.insertRow(-1);
-
-                for (var j = 0; j < col.length; j++) {
-                    var tabCell = tr.insertCell(-1);
-                    tabCell.innerHTML = data[col[j]];
-
-                }
+            // ajouter JSOn on Rows.     
+            for (var i = 0; i < arrrysDAta.length/14; i++) {
+                    tr = table.insertRow(-1);
+                        for (var j = 0; j < col.length; j++) {
+                            var tabCell = tr.insertCell(-1);
+                            tabCell.innerHTML = data[col[j]];
+                    }
             }
             // ajouter Json a la div data .
             //var divContainer = document.getElementById("modal");
