@@ -85,7 +85,7 @@ function precedent() {
     suprimerRows();
     indice--;
     testNextPrecedent();
-    document.getElementById("next").style.display
+    document.getElementById("next").style.display="";
     //  people(indice);
     // window.scrollTo(0,document.body.scrollHeight);
 }
@@ -115,6 +115,7 @@ function testNextPrecedent(){
     }
 }
 function startANim() {
+    var div = document.getElementById("load");
     div.style.display = "block";
 }
 function stopAnimation() {
@@ -172,19 +173,21 @@ function filterHieght_mass(indice,value) {
 //modele table 
 function ModalTAble(rows){
    console.log(rows);
-  
+   startANim();
    var modal = document.getElementById("myModal");
    var span = document.getElementsByClassName("close")[0];
    modal.style.display = "block";
     span.onclick = function() {
         modal.style.display = "none";
         modalsupromerRows();
+        stopAnimation();
    }
 
     window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
         modalsupromerRows();
+        stopAnimation();
     }
     }
 
@@ -194,13 +197,10 @@ function ModalTAble(rows){
 people(1);
 //suppreimerRowsmodal
 function modalsupromerRows(){
-    let table1 = document.getElementById("tabPalent");
-    var size = table1.rows.length, i;
-    console.log(size);
-    for (i = 1; i < size - 3; i++) {
-        table1.deleteRow(i);
-    }
-
+    let tableM = document.getElementById("tabPalent");
+    tr = tableM.getElementsByTagName("tr");
+    for (i = 1; i < tr.length; i++) 
+             tr[i].style.display = "none";  
 }
 //.table planet
 const planet = async function (url) {
@@ -213,10 +213,10 @@ const planet = async function (url) {
             //var colinclus="name";
             let table = document.getElementById("tabPalent");
             var tr = table.insertRow(-1);
-
-            
+            //var arrrysDAta =Object.keys(data).map(i => data[i]); 
+            //console.log(arrrysDAta.length);
             // ajouter JSOn on Rows.
-            for (var i = 0; i < 3; i++) {
+            for (var i=0 ;i<1;i++) {
                 tr = table.insertRow(-1);
 
                 for (var j = 0; j < col.length; j++) {
@@ -227,7 +227,7 @@ const planet = async function (url) {
             }
            
             // ajouter Json a la div data .
-            var divContainer = document.getElementById("modal");
+            //var divContainer = document.getElementById("modal");
             //divContainer.innerHTML="";
             //divContainer.appendChild(table);
         }
