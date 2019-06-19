@@ -201,7 +201,7 @@ function modalsupromerRows(){
     tr = tableM.getElementsByTagName("tr");
     for (i = 1; i < tr.length; i++) 
              tr[i].style.display = "none";  
-}
+} 
 //.table planet
 const planet = async function (url) {
    
